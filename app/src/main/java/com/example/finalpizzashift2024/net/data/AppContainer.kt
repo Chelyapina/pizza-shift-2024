@@ -1,6 +1,6 @@
-package com.example.pizzashift2024.net.data
+package com.example.finalpizzashift2024.net.data
 
-import com.example.pizzashift2024.net.PizzaService
+import com.example.finalpizzashift2024.net.PizzaService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -10,7 +10,7 @@ interface AppContainer{
     val pizzaRepository: PizzaRepository
 }
 
-class DefaultAppContainer:AppContainer{
+class DefaultAppContainer: AppContainer {
     private val BASE_URL = "https://shift-backend.onrender.com/pizza/"
 
     private val okHttpClient: OkHttpClient by lazy {

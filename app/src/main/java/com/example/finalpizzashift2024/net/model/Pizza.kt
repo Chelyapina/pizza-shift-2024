@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Pizza (
 
-  @SerializedName("success" ) var success : Boolean?           = null,
-  @SerializedName("catalog" ) var catalog : ArrayList<Catalog> = arrayListOf()
+  @SerializedName("success" ) val success : Boolean?           = null,
+  @SerializedName("catalog" ) val catalog : List<Catalog> = listOf()
 
 )

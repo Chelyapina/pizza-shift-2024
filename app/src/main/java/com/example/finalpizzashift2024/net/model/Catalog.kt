@@ -5,23 +5,23 @@ import com.google.gson.annotations.SerializedName
 
 data class Catalog (
 
-  @SerializedName("id"            ) var id            : String?                = null,
-  @SerializedName("name"          ) var name          : String?                = null,
-  @SerializedName("ingredients"   ) var ingredients   : ArrayList<Ingredients> = arrayListOf(),
-  @SerializedName("toppings"      ) var toppings      : ArrayList<Toppings>    = arrayListOf(),
-  @SerializedName("description"   ) var description   : String?                = null,
-  @SerializedName("sizes"         ) var sizes         : ArrayList<Sizes>       = arrayListOf(),
-  @SerializedName("doughs"        ) var doughs        : ArrayList<Doughs>      = arrayListOf(),
-  @SerializedName("calories"      ) var calories      : Int?                   = null,
-  @SerializedName("protein"       ) var protein       : String?                = null,
-  @SerializedName("totalFat"      ) var totalFat      : String?                = null,
-  @SerializedName("carbohydrates" ) var carbohydrates : String?                = null,
-  @SerializedName("sodium"        ) var sodium        : String?                = null,
-  @SerializedName("allergens"     ) var allergens     : ArrayList<String>      = arrayListOf(),
-  @SerializedName("isVegetarian"  ) var isVegetarian  : Boolean?               = null,
-  @SerializedName("isGlutenFree"  ) var isGlutenFree  : Boolean?               = null,
-  @SerializedName("isNew"         ) var isNew         : Boolean?               = null,
-  @SerializedName("isHit"         ) var isHit         : Boolean?               = null,
-  @SerializedName("img"           ) var img           : String?                = null
+  @SerializedName("id"            ) val id            : String?                = null,
+  @SerializedName("name"          ) val name          : String?                = null,
+  @SerializedName("ingredients"   ) val ingredients   : List<Ingredients> = listOf(),
+  @SerializedName("toppings"      ) val toppings      : List<Toppings>    = listOf(),
+  @SerializedName("description"   ) val description   : String?                = null,
+  @SerializedName("sizes"         ) val sizes         : List<Sizes>       = listOf(),
+  @SerializedName("doughs"        ) val doughs        : List<Doughs>      = listOf(),
+  @SerializedName("calories"      ) val calories      : Int?                   = null,
+  @SerializedName("protein"       ) val protein       : String?                = null,
+  @SerializedName("totalFat"      ) val totalFat      : String?                = null,
+  @SerializedName("carbohydrates" ) val carbohydrates : String?                = null,
+  @SerializedName("sodium"        ) val sodium        : String?                = null,
+  @SerializedName("allergens"     ) val allergens     : List<String>      = listOf(),
+  @SerializedName("isVegetarian"  ) val isVegetarian  : Boolean?               = null,
+  @SerializedName("isGlutenFree"  ) val isGlutenFree  : Boolean?               = null,
+  @SerializedName("isNew"         ) val isNew         : Boolean?               = null,
+  @SerializedName("isHit"         ) val isHit         : Boolean?               = null,
+  @SerializedName("img"           ) val img           : String?                = null
 
 )
