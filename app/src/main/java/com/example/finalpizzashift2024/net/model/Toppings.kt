@@ -6,8 +6,8 @@ import com.google.gson.annotations.SerializedName
 
 data class Toppings (
 
-  @SerializedName("name" ) var name : NameIngredients,
-  @SerializedName("cost" ) var cost : Int?    = null,
-  @SerializedName("img"  ) var img  : String? = null
+  @SerializedName("name" ) val name : NameIngredients,
+  @SerializedName("cost" ) val cost : Int?    = null,
+  @SerializedName("img"  ) val img  : String? = null
 
 )

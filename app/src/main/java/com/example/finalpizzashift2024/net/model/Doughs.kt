@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Doughs (
 
-  @SerializedName("name"  ) var name  : NameDoughs,
-  @SerializedName("price" ) var price : Int?    = null
+  @SerializedName("name"  ) val name  : NameDoughs,
+  @SerializedName("price" ) val price : Int?    = null
 
 )
