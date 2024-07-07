@@ -1,8 +1,5 @@
 package com.example.finalpizzashift2024.ui.theme
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -12,8 +9,11 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.finalpizzashift2024.PizzaApplication
 import com.example.finalpizzashift2024.net.data.OnePizzaInfo
 import com.example.finalpizzashift2024.net.data.PizzaRepository
-
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlin.coroutines.cancellation.CancellationException
 
 sealed interface PizzaUiState{
     data class Success(val pizzaSearch: List<OnePizzaInfo>): PizzaUiState
@@ -23,32 +23,29 @@ sealed interface PizzaUiState{
 
 class PizzaViewModel(private val pizzaRepository: PizzaRepository): ViewModel() {
 
-    var pizzaUiState: PizzaUiState by mutableStateOf(PizzaUiState.Loading)
-        private set
+    private val _pizzaUiState = MutableStateFlow<PizzaUiState>(PizzaUiState.Loading)
+    val pizzaUiState: StateFlow<PizzaUiState> = _pizzaUiState.asStateFlow()
 
-    init{
-        getPizza()
-    }
-
-    fun getPizza(){
+    fun getPizza() {
         viewModelScope.launch {
-            pizzaUiState = PizzaUiState.Loading
-            pizzaUiState = try {
+            _pizzaUiState.value = PizzaUiState.Loading
+            _pizzaUiState.value = try {
                 PizzaUiState.Success(pizzaRepository.getPizza())
-            }catch (e: Exception) {
+            } catch (ce: CancellationException) {
+                throw ce
+            } catch (e: Exception) {
                 PizzaUiState.Error
             }
         }
     }
 
-    companion object{
-        val Factory:ViewModelProvider.Factory = viewModelFactory {
-            initializer{
+    companion object {
+        val Factory: ViewModelProvider.Factory = viewModelFactory {
+            initializer {
                 val application = (this[APPLICATION_KEY] as PizzaApplication)
                 val pizzaRepository = application.container.pizzaRepository
                 PizzaViewModel(pizzaRepository = pizzaRepository)
             }
         }
     }
-
 }
