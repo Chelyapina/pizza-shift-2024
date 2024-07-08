@@ -7,4 +7,12 @@
     <!--	Error Screen -->
     <string name="error_title">Ошибка соединения</string>
     <string name="error_try_again">Попробовать еще раз</string>
+
+    <!--	Pizza Screen -->
+    <string name="from">От</string>
+    <string name="ruble_symb">₽</string>
+
+    <string name="close">Закрыть</string>
+    <string name="add_to_taste">Добавить по вкусу</string>
+    <string name="add_to_cart">Добавить в корзину</string>
 </resources>

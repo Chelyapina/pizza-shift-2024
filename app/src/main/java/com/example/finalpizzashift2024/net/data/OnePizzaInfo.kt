@@ -9,7 +9,6 @@ data class OnePizzaInfo(
     var description: String?= null,
     var img: String?= null,
     var minCost: Int?= null,
-//    val infoForAlert: List<InfoForAlert>
 
     val doughs: List<Doughs>? = null,
     val sizes: List<Sizes>? = null,

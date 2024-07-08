@@ -26,7 +26,7 @@ fun PizzaApp(modifier: Modifier = Modifier) {
                 title = {
                     Text(
                         text = stringResource(id =R.string.main_page_title),
-                        style = Typography.titleLarge,
+                        style = Typography.headlineLarge,
                         textAlign = TextAlign.Left,
                         modifier = modifier.padding(16.dp)
                     )
