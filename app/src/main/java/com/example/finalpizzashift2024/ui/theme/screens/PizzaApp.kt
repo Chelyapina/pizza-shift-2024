@@ -12,16 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.finalpizzashift2024.R
-import com.example.finalpizzashift2024.ui.theme.PizzaViewModel
 import com.example.finalpizzashift2024.ui.theme.Typography
-import com.example.finalpizzashift2024.ui.theme.screens.HomeScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PizzaApp(modifier: Modifier = Modifier) {
-    val pizzaViewModel: PizzaViewModel = viewModel(factory = PizzaViewModel.Factory)
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -30,7 +26,7 @@ fun PizzaApp(modifier: Modifier = Modifier) {
                 title = {
                     Text(
                         text = stringResource(id =R.string.main_page_title),
-                        style = Typography.titleLarge,
+                        style = Typography.headlineLarge,
                         textAlign = TextAlign.Left,
                         modifier = modifier.padding(16.dp)
                     )
@@ -44,11 +40,7 @@ fun PizzaApp(modifier: Modifier = Modifier) {
                 .fillMaxSize()
                 .padding(it),
         ) {
-            HomeScreen(
-                pizzaUiState = pizzaViewModel.pizzaUiState,
-                retryAction = { pizzaViewModel.getPizza() },
-                modifier = modifier
-            )
+            HomeScreen()
         }
     }
 }

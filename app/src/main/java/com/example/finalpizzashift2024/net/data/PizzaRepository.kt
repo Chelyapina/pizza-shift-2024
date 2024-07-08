@@ -8,15 +8,10 @@ interface PizzaRepository {
 }
 
 class NetPizzaRepository(
-    private val pizzaService: PizzaService
-): PizzaRepository{
+    private val pizzaService: PizzaService,
+    private val pizzaConverter: PizzaConverter = PizzaConverter()
+): PizzaRepository {
     override suspend fun getPizza(): List<OnePizzaInfo> = pizzaService.pizzaSearch().catalog.map { catalog ->
-        OnePizzaInfo(
-            name = catalog.name,
-            description = catalog.description,
-            img = "https://shift-backend.onrender.com" + catalog.img,
-            minCost = catalog.sizes.find { it.name == NameSize.SMALL }?.price
-        )
-
+        pizzaConverter.toOnePizzaInfo(catalog)
     }
 }
