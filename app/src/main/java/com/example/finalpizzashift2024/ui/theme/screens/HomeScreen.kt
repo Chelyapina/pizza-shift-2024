@@ -7,18 +7,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import com.example.finalpizzashift2024.net.data.cart.DataCartForOnePizza
 import com.example.finalpizzashift2024.ui.theme.CartViewModel
 import com.example.finalpizzashift2024.ui.theme.PizzaUiState
 import com.example.finalpizzashift2024.ui.theme.PizzaViewModel
 
 @Composable
-fun HomeScreen(
+fun HomeScreen(navController: NavController, pizzaRes: List<DataCartForOnePizza>
 ){
     val pizzaViewModel: PizzaViewModel = viewModel(factory = PizzaViewModel.Factory)
     val pizzaUiState by pizzaViewModel.pizzaUiState.collectAsState()
 
-    val cartViewModel: CartViewModel = viewModel()
-    val pizzaRes by cartViewModel.dataCart.collectAsState()
+
     val mutablePizzaRes = remember(pizzaRes) { pizzaRes.toMutableList() }
 
     LaunchedEffect(Unit) {
