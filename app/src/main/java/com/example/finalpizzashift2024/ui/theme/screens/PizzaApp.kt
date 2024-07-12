@@ -96,8 +96,8 @@ fun PizzaApp(modifier: Modifier = Modifier) {
                     )
                 }
                 composable(Routes.Cart.route) {
-                    CartScreen(
-                    )
+//                    CartScreen(
+//                    )
                 }
             }
         }
