@@ -12,8 +12,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -37,8 +36,13 @@ sealed class Routes(val route: String) {
 fun PizzaApp(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
 
-    val cartViewModel: CartViewModel = viewModel()
-    val pizzaRes by cartViewModel.dataCart.collectAsState()
+//    val cartViewModel: CartViewModel = viewModel()
+//    val pizzaRes by cartViewModel.dataCart.collectAsState()
+
+//    val viewModel: CartViewModel = viewModel()
+//    LaunchedEffect(Unit) {
+//        viewModel.addPizzaToCart(pizza)
+//    }
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -92,12 +96,11 @@ fun PizzaApp(modifier: Modifier = Modifier) {
                 composable(Routes.Home.route) {
                     HomeScreen(
                         navController = navController,
-                        pizzaRes = pizzaRes
                     )
                 }
                 composable(Routes.Cart.route) {
-//                    CartScreen(
-//                    )
+                    CartScreen(
+                    )
                 }
             }
         }

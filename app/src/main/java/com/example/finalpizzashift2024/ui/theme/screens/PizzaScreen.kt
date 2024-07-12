@@ -31,26 +31,32 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.finalpizzashift2024.R
 import com.example.finalpizzashift2024.net.data.OnePizzaInfo
+import com.example.finalpizzashift2024.net.data.cart.DataCart
 import com.example.finalpizzashift2024.net.data.cart.DataCartForOnePizza
+import com.example.finalpizzashift2024.ui.theme.CartViewModel
 import com.example.finalpizzashift2024.ui.theme.Typography
 
 
 @Composable
-fun PizzaScreen(pizza: List<OnePizzaInfo>, pizzaRes: MutableList<DataCartForOnePizza>, modifier: Modifier) {
+fun PizzaScreen(pizza: List<OnePizzaInfo>, modifier: Modifier) {
+    val cartViewModel = remember { CartViewModel() }
     Column {
         LazyVerticalGrid(
             columns = GridCells.Fixed(1),
             contentPadding = PaddingValues(4.dp)
         ) {
             itemsIndexed(pizza) { _, piz ->
-                PizzaCard(pizza = piz, pizzaRes = pizzaRes)
+                PizzaCard(pizza = piz, onAddToCart = {
+                        newItem ->
+                    cartViewModel.addPizzaToCart(newItem)
+                })
             }
         }
     }
 }
 
 @Composable
-fun PizzaCard(pizza: OnePizzaInfo, pizzaRes: MutableList<DataCartForOnePizza>, modifier: Modifier = Modifier) {
+fun PizzaCard(pizza: OnePizzaInfo, onAddToCart: (DataCartForOnePizza) -> Unit, modifier: Modifier = Modifier) {
     var showDialog by remember { mutableStateOf(false) }
 
     Card(
@@ -63,10 +69,17 @@ fun PizzaCard(pizza: OnePizzaInfo, pizzaRes: MutableList<DataCartForOnePizza>, m
         )
     ) {
         if (showDialog) {
+//            PizzaAlert(
+//                pizza = pizza,
+//                pizzaRes = pizzaRes,
+//                onDismiss = { showDialog = false })
             PizzaAlert(
                 pizza = pizza,
-                pizzaRes = pizzaRes,
-                onDismiss = { showDialog = false })
+                onDismiss = { showDialog = false },
+                onAddToCart = { newItem ->
+                    onAddToCart(newItem)
+                }
+            )
         }
 
         Row(horizontalArrangement = Arrangement.spacedBy(15.dp)) {

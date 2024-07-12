@@ -14,13 +14,10 @@ import com.example.finalpizzashift2024.ui.theme.PizzaUiState
 import com.example.finalpizzashift2024.ui.theme.PizzaViewModel
 
 @Composable
-fun HomeScreen(navController: NavController, pizzaRes: List<DataCartForOnePizza>
+fun HomeScreen(navController: NavController
 ){
     val pizzaViewModel: PizzaViewModel = viewModel(factory = PizzaViewModel.Factory)
     val pizzaUiState by pizzaViewModel.pizzaUiState.collectAsState()
-
-
-    val mutablePizzaRes = remember(pizzaRes) { pizzaRes.toMutableList() }
 
     LaunchedEffect(Unit) {
         pizzaViewModel.getPizza()
@@ -30,7 +27,6 @@ fun HomeScreen(navController: NavController, pizzaRes: List<DataCartForOnePizza>
         is PizzaUiState.Loading -> LoadingScreen()
         is PizzaUiState.Success -> PizzaScreen(
             pizza = (pizzaUiState as PizzaUiState.Success).pizzaSearch,
-            pizzaRes = mutablePizzaRes,
             modifier = Modifier
         )
         is PizzaUiState.Error -> ErrorScreen(onRetry = { pizzaViewModel.getPizza() })
